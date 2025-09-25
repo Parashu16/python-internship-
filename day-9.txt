@@ -1,0 +1,487 @@
+Day-9
+
+1] abstract_fun
+
+from abstractio_example import*
+bike=Bike(2,"black")
+bike.start()
+scooty=Scooty(2)
+scooty.start
+
+2] Insertion sort.
+
+arr = [4, 1, 2, 5, 6, 3]
+n = len(arr)
+
+for i in range(1, n):
+    key = arr[i]
+    j = i - 1
+    while j >= 0 and arr[j] > key:
+        arr[j + 1] = arr[j]
+        j -= 1
+    arr[j + 1] = key
+
+print("Sorted array:", arr)
+
+3] selection sort.
+arr = [4, 1, 2, 5, 6, 3]
+n = len(arr)
+
+for i in range(n):
+    min_index = i
+    for j in range(i+1, n):
+        if arr[j] < arr[min_index]:
+            min_index = j
+    arr[i], arr[min_index] = arr[min_index], arr[i]
+
+print("Sorted array:", arr)
+
+4] Bubble sort.
+def bubble_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+data = [64, 34, 25, 12, 22, 11, 90]
+print("Unsorted array:", data)
+bubble_sort(data)
+print("Sorted array:",data)
+
+5]  Single linked list.
+
+class Node:
+    def __init__(self, data):  
+        self.data = data
+        self.next = None
+
+class SLL:
+    def __init__(self):
+        self.head = None
+
+    def insert_at_begin(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_node
+
+    def insert_at_specific(self, data, pos):
+        new_node = Node(data)
+        temp = self.head
+       
+        for i in range(1, pos-1):
+            if temp is None:
+                print("Position out of range")
+                return
+            temp = temp.next
+        new_node.next = temp.next
+        temp.next = new_node
+
+    def traversal(self):
+        if self.head is None:
+            print("Linked List is empty")
+        else:
+            temp = self.head
+            while temp is not None:
+                print(temp.data, end="->")
+                temp = temp.next
+            print("None")
+
+
+ll = SLL()
+ll.traversal()
+
+ll.insert_at_begin(2)
+ll.traversal()
+
+ll.insert_at_end(28)
+ll.traversal()
+
+ll.insert_at_specific(8, 2)  
+ll.traversal
+
+6] Multiple Inheritance.
+
+class engine:
+    def engine_info(self):
+        return "This is an engine"
+class wheels:
+    def wheels_info(self):
+        return "car has 4 wheeels"
+class car(engine,wheels):
+    def car_info(self):
+        return "this is a car"
+c=car()
+print(c.engine_info())
+print(c.wheels_info())
+print(c.car_info())
+
+7] 5 _py
+
+class math:
+    def add(self,a=0,b=0,c=0):
+        return a+b+c
+m=math()
+print(m.add(1,2))
+print(m.add(1,2,3))
+print(m.add)
+
+8]  Linear Search.
+
+def search(list1,key):
+    for i in range(len(list1)):
+        if(list1[i]==key):
+            print("elem at index",i)
+            break
+        else:
+            print("key not found")
+list1=[2,4,5,6,1,7,8,9,11]
+key=int(input("enter the key:"))
+search(list1,key)def binary_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = low + (high - low) // 2
+        if arr[mid] == x:
+            return mid  
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+arr = [1, 3, 5, 7, 9, 11]
+print(binary_search(arr,7))
+
+9] 2_py
+class Cars:
+    wheels = 4
+
+    def __init__(self, mil, car):
+        self.mil = mil
+        self.car = car
+
+    def get_mil(self):
+        return self.mil
+
+    def set_mil(self, value):
+        self.mil = value
+
+    def info(self):
+        print("hi hello")
+
+    @classmethod
+    def infor(cls):
+        return cls.wheels
+
+
+print(Cars.infor())
+c1 = Cars(10, "bmw")
+c2 = Cars(15, "audi")
+c1.wheels = 9
+print(c1.mil)
+print(c1.wheels)
+print(c2.wheels)
+print(c1.get_mil())
+c1.set_mil(12)
+print(c1.mil)
+
+10] Binary Search.
+
+def binary_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = low + (high - low) // 2
+        if arr[mid] == x:
+            return mid  
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+arr = [1, 3, 5, 7, 9, 11]
+print(binary_search(arr,7)) 
+
+11] Encapsulation.
+
+class bikes:
+    def __init__(self,name,cc,m,cost):
+        self.name=name
+        self.cc=cc
+        self.m=m
+        self.cost=cost
+    def performance(self):
+        print("abt bikes:",self.name,self.cc,self.cost)
+gt=bikes("gt",650,12,4)
+duke=bikes("duke",390,30,2)
+gt.performance()
+duke.performance()
+
+12] minimum
+
+def find_min(nums):
+    low, high = 0, len(nums) - 1
+
+    while low < high:
+        mid = (low + high) // 2
+        if nums[mid] > nums[high]:
+            low = mid + 1
+        else:
+            high = mid
+    return nums[low]
+
+
+nums = [5,6,7,0,1,2,3]
+print("Minimum element is:",find_min(nums))
+
+13] 3_py
+
+class pycharm:
+
+    def execute(self):
+
+        print("compiling")
+
+        print("running")
+
+class myeditor:
+
+    def execute(self):
+
+        print("debugging")
+
+        print("printing error")
+
+        print("compiling")
+
+        print("running")
+
+class laptop:
+
+    def code(self,ide):
+
+        ide.execute()
+
+ide=pycharm()
+
+lap1=laptop()
+
+lap1.code(ide)
+
+14] Single inheritance.
+
+class animal:
+    def sound(self):
+        return "Animal make different sounds"
+class Dog(animal):
+    def s(self):
+        return "dog barks"
+d=Dog()
+print(d.sound())
+print(d.s())
+
+15] Abstract example.
+
+from abstract_class import Vehicle
+class Bike(Vehicle):
+    def _init_(self,n,color):
+        super()._init_(n)
+        self.color=color
+    def start(self):
+        print("Start with Kick")
+class Scooty(Vehicle):
+    def start(self):
+        print("Self Start")
+class Car(Vehicle):
+    def _init_(self,n,x):
+        super._init_(n)
+        self.no_of_gears=6
+    def start(self):
+        print("start with the key")
+
+16] Reduce the number tone.
+
+def fun(n):
+    if n==1:
+        return 0
+    elif n%2==0:
+        return 1+fun(n//2)
+    else:
+        return 1+min(fun(n-1),fun(n+1))
+n=int(input("enter the num"))
+print(fun(n))
+
+17] Abstract class.
+
+from abc import ABC,abstractmethod
+class Vehicle(ABC):
+    def _init_(self,n):
+        self.no_of_tires=n
+    @abstractmethod
+    def start(self):
+        pass
+    def manfac(self):
+        pass
+    def display(self):
+        print("hi i am calling from vehicle class")
+
+18] Stack.
+
+s="ab*c**def"
+stack=[]
+for i in s:
+    if i=="*":
+        stack=[]
+    else:    
+        stack.append(i)
+result="".join(stack)
+print(result)
+
+19] Merge sort.
+
+def mergesort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = mergesort(arr[:mid])
+    right = mergesort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+arr = [5, 2, 9, 1, 6, 3]
+print(mergesort(arr))
+
+20]  Quick sort.
+
+def quicksort(arr):
+    if len(arr) <= 1:   
+        return arr
+    pivot = arr[len(arr) // 2]  
+    left = [x for x in arr if x < pivot]  
+    middle = [x for x in arr if x == pivot] 
+    right = [x for x in arr if x > pivot]  
+    return quicksort(left) + middle + quicksort(right)
+arr = [4, 1, 2, 5, 6, 3]
+print("Before sorting:", arr)
+sorted_arr = quicksort(arr)
+print("After sorting:", sorted_arr)
+
+21] Multilevel inheritence.
+
+class Animal:
+    def species(self):
+        return "this is an animal"
+class mammal(Animal):
+    def category(self):
+        return "this is a mammmal"
+class human(mammal):
+    def speak(self):
+        return "humans can speak"
+h=human()
+print(h.species())
+print(h.category())
+print(h.speak())
+
+22] 4_py
+
+class Student:
+    def __init__(self, m1, m2):
+        self.m1 = m1
+        self.m2 = m2
+
+    def __add__(self, other):
+        m1 = self.m1 + other.m1
+        m2 = self.m2 + other.m2
+        return Student(m1, m2)
+
+    def __gt__(self, other):
+        r1 = self.m1 + self.m2
+        r2 = other.m1 + other.m2
+        return r1 > r2
+
+
+s1 = Student(59, 65)
+s2 = Student(67, 85)
+
+s3 = s1 + s2
+print(s3.m1)
+print(s3.m2)
+
+if s1 > s2:
+    print("s1 is having more marks than s2")
+else:
+    print("s2 is having more marks than s1")
+
+23]  First and last occurence of element.
+
+def first_and_last_occurrence(arr, x):
+    n = len(arr)
+    low, high = 0, n-1
+    first = -1
+    while low <= high:
+        mid = low + (high - low) // 2
+        if arr[mid] == x:
+            first = mid
+            high = mid - 1  
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+    low, high = 0, n-1
+    last = -1
+    while low <= high:
+        mid = low + (high - low) // 2
+        if arr[mid] == x:
+            last = mid
+            low = mid + 1   
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+    
+    return first, last
+
+arr = [1, 2, 2, 2, 3, 4, 5]
+target = 2
+print(first_and_last_occurrence(arr,target))
+
+24] Hierarchical inheritance.
+
+class vehicles:
+    def fuel_type(self):
+        return "vehicles can use petrol,disel and lpg"
+class car(vehicles):
+    def type(Self):
+        return "car is a four wheeler"
+class bike(vehicles):
+    def type(self):
+        return "bike is a 2 wheeler"
+c=car()
+b=bike()
+print(c.fuel_type())
+print(c.type())
+print(b.type())
+
+

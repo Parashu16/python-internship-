@@ -1,0 +1,215 @@
+Day-10
+
+1] Leetcode 141-Linked list cycle
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        fast=head
+        slow=head
+        while fast!=None and fast.next!=None:
+            slow=slow.next
+            fast=fast.next.next
+            if fast==slow:
+                return True
+        return False
+
+2] Leetcode- 206. Reverse Linked List
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev=None
+        cur=head
+        while cur is not None:
+            next_node=cur.next
+            cur.next=prev
+            prev=cur
+            cur=next_node
+        return prev
+
+3] 160. Intersection of Two Linked Lists
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        l1=headA
+        l2=headB
+        while l1!=l2:
+            if l1:
+                l1=l1.next
+            else:
+                l1=headB
+            if l2:
+                l2=l2.next
+            else:
+                l2=headA
+        return l1
+
+4] 19. Remove Nth Node From End of List
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        fast=head
+        slow=head
+        for i in range(n):
+            fast=fast.next
+        if fast is None:
+            return head.next
+        while fast.next!=None:
+            fast=fast.next
+            slow=slow.next
+        slow.next=slow.next.next
+        return head
+
+5] Trees--in,pre,post,level orders.
+
+ from collections import deque
+class Node:
+    def __init__(self, root):
+        self.data = root
+        self.left = None
+        self.right = None
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.data, end=" ")
+        inorder(node.right)
+def preorder(node):
+    if node:
+        print(node.data, end=" ")
+        preorder(node.left)
+        preorder(node.right)
+def postorder(node):
+    if node:
+        postorder(node.left)
+        postorder(node.right)
+        print(node.data, end=" ")
+def levelorder(root):
+    if not root:
+        return
+    q = deque([root])
+    while q:
+        node = q.popleft()
+        print(node.data, end=" ")
+        if node.left:
+            q.append(node.left)
+        if node.right:
+            q.append(node.right)
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+root.left.left = Node(2)
+root.left.right = Node(8)
+root.right.left = Node(15)
+root.right.right = Node(25)
+root.left.left.left = Node(1)
+print("Inorder Traversal: ", end="")
+inorder(root)
+print("\nPreorder Traversal: ", end="")
+preorder(root)
+print("\nPostorder Traversal: ", end="")
+postorder(root)
+print("\nLevel Order Traversal: ", end="")
+levelorder(root)
+
+6]Sum of all nodes.
+
+class Node:
+    def __init__(self, root):
+        self.data = root
+        self.left = None
+        self.right = None
+def sum_of_nodes(root):
+    if root is None:
+        return 0
+    return root.data + sum_of_nodes(root.left) + sum_of_nodes(root.right)
+root = Node(10)
+root.left = Node(3)
+root.right = Node(20)
+root.left.left = Node(2)
+root.left.right = Node(8)
+root.right.left = Node(15)
+root.right.right = Node(25)
+root.left.left.left = Node(1)
+print("Sum of all nodes:", sum_of_nodes(root))
+
+7] Sum of all even nodes.
+
+class Node:
+    def __init__(self, root):
+        self.data = root
+        self.left = None
+        self.right = None
+def sum_of_even_nodes(root):
+    if root is None:
+        return 0
+    current = root.data if root.data % 2 == 0 else 0
+    return current + sum_of_even_nodes(root.left) + sum_of_even_nodes(root.right)
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+root.left.left = Node(2)
+root.left.right = Node(8)
+root.right.left = Node(15)
+root.right.right = Node(25)
+root.left.left.left = Node(1)
+print("Sum of even nodes:", sum_of_even_nodes(root))
+
+8] Top view
+
+from collections import deque
+
+class Node:
+    def __init__(self, root):
+        self.data = root
+        self.left = None
+        self.right = None
+
+def top_view(root):
+    if not root:
+        return []
+    q = deque([(root, 0)])
+    hd_map = {}
+    while q:
+        node, hd = q.popleft()
+        if hd not in hd_map:
+            hd_map[hd] = node.data
+        if node.left:
+            q.append((node.left, hd - 1))
+        if node.right:
+            q.append((node.right, hd + 1))
+    return [hd_map[hd] for hd in sorted(hd_map.keys())]
+
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+root.left.left = Node(2)
+root.left.right = Node(8)
+root.right.left = Node(15)
+root.right.right = Node(25)
+root.left.left.left = Node(1)
+
+print("Nodes visible from top:", top_view(root))
+
+9] Height of the tree.
+
+class Node:
+    def __init__(self, root):
+        self.data = root
+        self.left = None
+        self.right = None
+def height(root):
+    if root is None:
+        return 0   
+    left_height = height(root.left)
+    right_height = height(root.right)
+    return 1 + max(left_height, right_height)
+root = Node(10)
+root.left = Node(5)
+root.right = Node(20)
+root.left.left = Node(2)
+root.left.right = Node(8)
+root.right.left = Node(15)
+root.right.right = Node(25)
+root.left.left.left = Node(1)
+print("Height of tree:", height(root))
+
+10]
